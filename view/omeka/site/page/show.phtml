@@ -1,0 +1,60 @@
+<?php
+
+/*
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Mvc\Controller\AbstractController;
+use Zend\View\Model\ViewModel;
+// use DirectoryIterator;  
+use Zend\Http\Request;
+use Zend\Http\Response;
+use Zend\Debug\Debug;
+use Zend\Dom\Query;
+*/
+
+$this->htmlElement('body')->appendAttribute('class', 'page');
+$this->pageTitle($page->title(), 2);
+?>
+
+<?php
+$nav = $site->publicNav();
+$container = $nav->getContainer();
+$activePage = $nav->findActive($container);
+if ($activePage):
+?>
+    <?php if ($activePage['depth'] !== 0): ?>
+    <nav class="breadcrumbs"><?php echo $nav->breadcrumbs(); ?></nav>
+    <?php endif; ?>
+<?php endif; ?>
+
+<?php if ($activePage): ?>
+    <?php if ($this->displayNavigation && $activePage['page']->hasPages()): ?>
+    <nav class="sub-menu"><?php echo $nav->menu()->renderSubMenu(); ?></nav>
+    <?php endif; ?>
+<?php endif; ?>
+
+<?php $this->trigger('view.show.before'); ?>
+<div class="blocks">
+    <?php  
+//   if ($page->title() == 'Galerie') {
+/*
+$item = $apiManager->read('items', 100)->getContent();
+// Do something with the representation.
+echo json_encode($item);
+*/
+  // View data ?            
+//   } else {
+    echo $this->content;     
+//   }
+//       $r = $this->getRequest();
+// Zend\Debug\Debug::dump($this->params());       
+/*
+$r = Zend_Controller_Front::getInstance()->getRequest();
+var_dump($r);
+*/
+
+// echo $page->title();
+    ?>
+</div>
+<?php $this->trigger('view.show.after'); ?>
+<?php echo $this->sitePagePagination(); ?>

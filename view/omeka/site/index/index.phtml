@@ -1,0 +1,59 @@
+<div id="content" role="main">
+    <?php
+        $frontPageItemSetId = $this->themeSetting('front_page_item_set_id');
+        $frontPageImages = [];
+        for ($i = 1; $i < 11; $i++) {
+            $frontPageImage = $this->themeSettingAssetUrl("front_page_image_$i");
+            if ($frontPageImage) {
+                $frontPageImages[] = $frontPageImage;
+            }
+        }
+        if (count($frontPageImages)) {
+            $index = rand(0, count($frontPageImages) - 1);
+            $url = $frontPageImages[$index];
+            $this->headStyle()->appendStyle('
+                #search-form-wrapper {
+                    background-image: url("' . $url . '");
+                }
+            ');
+        }
+    ?>
+    <div id="search-form-wrapper">
+        <div id="search-form">
+            <?php echo $this->SearchForm(); ?>
+        </div>
+    </div>
+
+    <?php $searchPageId = $this->themeSetting('search_page_id'); ?>
+    <?php if ($searchPageId): ?>
+        <?php
+            $itemSets = $this->api()->search('item_sets', [
+                'is_public' => 1,
+                'limit' => 12,
+                'sort_by' => 'created',
+                'sort_order' => 'desc',
+            ])->getContent();
+        ?>
+        <?php if (!empty($itemSets)): ?>
+            <div id="collections">
+                <header>
+                    <h2>Collections</h2>
+                    <?php $collectionsUrl = $this->url('search-page-' . $this->themeSetting('search_page_id'), [], [
+                        'query' => [
+                            'resource_type' => 'item_sets',
+                        ],
+                    ], true); ?>
+                    <div class="ruler"></div>
+                    <a href="<?php echo $collectionsUrl; ?>"><img src="/themes/psl/asset/images/bullet.svg"/> Toutes les collections</a>
+                </header>
+                <main>
+                    <?php echo $this->partial('psl/item-sets', [
+                        'itemSets' => $itemSets,
+                    ]); ?>
+                </main>
+            </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <?php error_log('WARNING: Theme is not properly configured'); ?>
+    <?php endif; ?>
+</div>
