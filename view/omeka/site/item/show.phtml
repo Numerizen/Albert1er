@@ -17,7 +17,7 @@ foreach ($item->media() as $media) {
     }
 }
 ?>
-
+<?php $this->trigger('view.show.before'); ?>
 <?php echo $this->pageTitle($item->displayTitle(), 2); ?>
 <h3><?php echo $this->translate('Item'); ?></h3>
 <?php if (count($lightMedia) > 0): ?>

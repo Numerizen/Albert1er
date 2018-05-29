@@ -35,8 +35,10 @@ $userBar = $this->partial('common/user-bar', ['site' => $site]);
                 <div id="title-site">
                 <a href="<?php echo $site->url(); ?>" class="site-title"><span id='title-text'>Campagnes scientifiques d'Albert 1er de Monaco</span></a>                   
             <h3 style="width:100%;text-align:center;">Résultats des campagnes scientifiques accomplies sur son yacht par Albert Ier, Prince Souverain de Monaco</h3>                
+
               <div id="search">
-                <form method="GET" action="/s/fond/rech"><div class="field">
+                <?php echo $site->url();  ?>
+                <form method="GET" action="<?php echo $site->url(); ?>/rech"><div class="field">
                   <div class="inputs">
                       <input id="searchtext" size="40" name="q" placeholder="Recherche de contenus" value="" type="text">
                         

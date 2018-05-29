@@ -1263,6 +1263,11 @@ footer img {
 #itemfiles li {
     bottom: 0;
 }
+.item .lSSlideOuter {
+  width:53%;
+  float:left;
+}
+
 .lSSlideOuter ul.lSPager.lSGallery {
     margin: auto;
     margin-bottom: 24px;
@@ -1306,7 +1311,7 @@ footer img {
 .lSPager img {
     margin: 0 12px 12px 0;
     vertical-align: bottom;
-    width: 72px;
+    width: 150px;
 }
 .uviewer {
   width:45%;
