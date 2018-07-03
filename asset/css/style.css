@@ -1325,3 +1325,6 @@ li.item h4 a:hover {
   color:#787878;
 }
 
+.search-results-wrapper {
+  clear:both;
+}
