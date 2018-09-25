@@ -45,7 +45,7 @@
     padding:0 2em;
   }
   #content {
-    padding:0 6em;
+    padding:1em 6em 0;
   }
   a:link {
     text-decoration: none;
@@ -315,13 +315,14 @@
     /* Home page */
     #search {
       width:30%;
-      margin:0 auto;
+      margin:0 auto;     
     }
     #search #searchtext {
       width:90%;
       clear:none;
       float:left;
-      background: url(../img/loupe-small.png)  center right no-repeat;
+      background: url(../img/loupe-small.png) center right no-repeat;
+      padding : 8px 0 8px 0;       
     }
 /*
     #loupe {
@@ -915,7 +916,7 @@ ul.resource-list .resource img ~ * {
     .properties-wrapper::after {
         content: '';
         display: block;
-        border-right: 525px solid transparent;
+        border-right: 475px solid transparent;
         border-top: 100px solid rgb(231, 239, 250);
         margin-bottom: 3em;
         }
@@ -943,6 +944,7 @@ ul.resource-list .resource img ~ * {
         /*margin-right: 2em;*/
 		width: 23%;
 		min-width: 23%;
+    word-break: break-word;
 		text-transform: uppercase;
     }
 
@@ -1328,3 +1330,11 @@ li.item h4 a:hover {
 .search-results-wrapper {
   clear:both;
 }
+#collections-item {
+  clear:both;
+}
+
+select.query-property {
+  max-width:250px;
+}
+nav.pagination{margin-bottom:30px;font-size:20px;line-height:45px}.pagination input{text-align:center}.resource-list+.pagination{border-color:transparent}.pagination form{min-width:90px}.pagination form,.pagination .button,.pagination button,.pagination .page-count{display:inline-block;vertical-align:top;height:45px}.pagination .button{border:1px solid #dedede;background-color:#dedede;width:45px;text-align:center;padding:7.5px;border-radius:2px;color:#ababab;line-height:30px}.pagination .button:hover{background-color:#787878}.pagination .inactive.button{opacity:.5;background-color:white}.pagination .inactive.button:hover{background-color:white}.pagination form,.pagination .last{margin-right:7.5px}.pagination input{width:60px}
