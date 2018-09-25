@@ -1337,4 +1337,48 @@ li.item h4 a:hover {
 select.query-property {
   max-width:250px;
 }
-nav.pagination{margin-bottom:30px;font-size:20px;line-height:45px}.pagination input{text-align:center}.resource-list+.pagination{border-color:transparent}.pagination form{min-width:90px}.pagination form,.pagination .button,.pagination button,.pagination .page-count{display:inline-block;vertical-align:top;height:45px}.pagination .button{border:1px solid #dedede;background-color:#dedede;width:45px;text-align:center;padding:7.5px;border-radius:2px;color:#ababab;line-height:30px}.pagination .button:hover{background-color:#787878}.pagination .inactive.button{opacity:.5;background-color:white}.pagination .inactive.button:hover{background-color:white}.pagination form,.pagination .last{margin-right:7.5px}.pagination input{width:60px}
+nav.pagination{
+  margin-bottom:30px;
+  font-size:20px;
+  line-height:45px
+}
+.pagination input{
+  text-align:center
+}
+.resource-list+.pagination{
+  border-color:transparent
+}
+.pagination form{
+  min-width:90px
+}
+.pagination form,
+.pagination .button,
+.pagination button,
+.pagination .page-count{
+  display:inline-block;vertical-align:top;height:45px
+}
+.pagination .button{
+  border:1px solid #dedede;
+  background-color:#dedede;
+  width:45px;
+  text-align:center;
+  padding:7.5px;
+  border-radius:2px;
+  color:#ababab;
+  line-height:30px
+}
+.pagination .button:hover{
+  background-color:#787878
+}
+.pagination .inactive.button{
+  opacity:.5;background-color:white
+}
+.pagination .inactive.button:hover{
+  background-color:white
+}
+.pagination form,.pagination .last{
+  margin-right:7.5px
+}
+.pagination input{
+  width:60px
+}
