@@ -321,8 +321,13 @@
       width:90%;
       clear:none;
       float:left;
-      background: url(../img/loupe-small.png) center right no-repeat;
       padding : 8px 0 8px 0;       
+    }
+    #recherche-submit {
+      background: url(../img/loupe-small.png) center center no-repeat;    
+      padding-top:16px;
+      border:none;
+      width:30px;  
     }
 /*
     #loupe {
@@ -1381,4 +1386,7 @@ nav.pagination{
 }
 .pagination input{
   width:60px
+}
+#lightSlider {
+  min-height:800px;
 }
