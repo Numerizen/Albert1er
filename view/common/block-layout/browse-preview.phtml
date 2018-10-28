@@ -3,7 +3,7 @@
 <?php if ($this->heading): ?>
 <h2><?php echo $this->heading; ?></h2>
 <?php endif; ?>
-<link type="text/css" rel="stylesheet" href="/themes/monaco/lightslider/dist/css/lightslider.css" />                  
+<link type="text/css" rel="stylesheet" href="/themes/monaco/lightslider/dist/css/lightslider.css" />
 <script src="/themes/monaco/lightslider/dist/js/lightslider.js"></script>
 
 <?php
@@ -11,9 +11,9 @@ $headingTerm = $this->siteSetting('browse_heading_property_term', 'dcterms:title
 $bodyTerm = $this->siteSetting('browse_body_property_term', 'dcterms:description');
 
 if ($this->heading == 'Fascicules') { //
-  
+
 /*
-echo $this->universalViewer($this->items, array(
+echo $this->universalViewer($resources, array(
         'class' => 'my-class',
         'style' => 'width: 80%; height: 800px;',
 //         'config' => 'https://example.com/my/specific/config.json',
@@ -25,13 +25,13 @@ echo $this->universalViewer($this->items, array(
 <?php
 
 
-foreach ($this->items as $item):
-    $heading = $item->value($headingTerm, ['default' => $this->translate('[Untitled]')]);
-    $body = $item->value($bodyTerm);
+foreach ($resources as $resource):
+    $heading = $resource->value($headingTerm, ['default' => $this->translate('[Untitled]')]);
+    $body = $resource->value($bodyTerm);
 ?>
     <li class="item resource">
-        <?php echo $this->thumbnail($item, 'large', ['title' => $heading]); ?>
-        <h4><?php echo $item->link($heading); ?></h4>
+        <?php echo $this->thumbnail($resource, 'large', ['title' => $heading]); ?>
+        <h4><?php echo $resource->link($heading); ?></h4>
         <?php if ($body): ?>
         <div class="description"><?php echo $body; ?></div>
         <?php endif; ?>
@@ -49,26 +49,26 @@ foreach ($this->items as $item):
         auto: true,
         loop: true,
         slideEndAnimation: true,
-        pause: 5000,}); 
+        pause: 5000,});
       });
     </script>
-    
-<?php 
-  } else {
-    ?>
 
-  
+<?php
+
+} else {
+
+?>
+
 <ul class="resource-list preview">
 <?php
 
-
-foreach ($this->items as $item):
-    $heading = $item->value($headingTerm, ['default' => $this->translate('[Untitled]')]);
-    $body = $item->value($bodyTerm);
+foreach ($resources as $resource):
+    $heading = $resource->value($headingTerm, ['default' => $this->translate('[Untitled]')]);
+    $body = $resource->value($bodyTerm);
 ?>
     <li class="item resource">
-        <?php echo $this->thumbnail($item, 'medium', ['title' => $heading]); ?>
-        <h4><?php echo $item->link($heading); ?></h4>
+        <?php echo $this->thumbnail($resource, 'medium', ['title' => $heading]); ?>
+        <h4><?php echo $resource->link($heading); ?></h4>
         <?php if ($body): ?>
         <div class="description"><?php echo $body; ?></div>
         <?php endif; ?>
@@ -76,7 +76,9 @@ foreach ($this->items as $item):
 <?php endforeach; ?>
 </ul>
 <?php
-    }
+
+}
+
 ?>
 <?php
 $linkText = $this->linkText == '' ? $this->translate('Browse all') : $this->linkText;
