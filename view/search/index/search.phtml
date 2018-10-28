@@ -1,6 +1,7 @@
 <?php
 /*
  * Copyright BibLibre, 2016
+ * Copyright Daniel Berthereau, 2017-2018
  *
  * This software is governed by the CeCILL license under French law and abiding
  * by the rules of distribution of free software.  You can use, modify and/ or
@@ -27,16 +28,18 @@
  */
 ?>
 
-
 <?php
-    $escape = $this->plugin('escapeHtml');
-    $this->headLink()->appendStylesheet($this->assetUrl('css/search.css', 'Search'));
-    $this->headScript()->appendFile($this->assetUrl('js/search.js', 'Search'));
+$translate = $this->plugin('translate');
+$escape = $this->plugin('escapeHtml');
+$this->htmlElement('body')->appendAttribute('class', 'search');
+$this->headLink()->appendStylesheet($this->assetUrl('css/search.css', 'Search'));
+$this->headScript()->appendFile($this->assetUrl('js/search.js', 'Search'));
+$this->headTitle($translate('Search'), \Zend\View\Helper\Placeholder\Container\AbstractContainer::PREPEND);
 ?>
 
-<?php $this->pageTitle($this->translate('Search')); ?>
-
+<?php if (empty($isPartial)): ?>
 <div id="content" role="main">
+<?php endif; ?>
 
     <?php if (isset($response)): ?>
         <div class="search-results-wrapper">
@@ -51,19 +54,24 @@
                     ?>
 
                     <?php $itemSetsCount = $response->getResourceTotalResults('item_sets'); ?>
-                    <?php echo $this->partial('search/resource-list', [
+                    <?php
+                    echo $this->partial('search/resource-list', [
                         'title' => sprintf($this->translatePlural('%s item set', '%s item sets', $itemSetsCount), $itemSetsCount),
                         'response' => $response,
                         'resourceName' => 'item_sets',
-                    ]); ?>
+                        'site' => $site,
+                    ]);
+                    ?>
 
                     <?php $itemsCount = $response->getResourceTotalResults('items'); ?>
-                    <?php echo $this->partial('search/resource-list', [
+                    <?php
+                    echo $this->partial('search/resource-list', [
                         'title' => sprintf($this->translatePlural('%s item', '%s items', $itemsCount), $itemsCount),
                         'response' => $response,
                         'resourceName' => 'items',
-                        'site' => $site
-                    ]); ?>
+                        'site' => $site,
+                    ]);
+                    ?>
 
                     <?php
                         echo $this->partial('search/results-footer', [
@@ -73,37 +81,13 @@
                         ]);
                     ?>
                 <?php else: ?>
-                    <div class="noresults"><?php echo $this->translate('Your query returned no results'); ?></div>
+                    <div class="noresults"><?php echo $translate('Your query returned no results'); ?></div>
                 <?php endif; ?>
             </div>
 
             <?php echo $this->partial('search/facets', ['facets' => $facets]); ?>
         </div>
     <?php endif; ?>
+<?php if (empty($isPartial)): ?>
 </div>
-<script>
-    $(document).ready(function() {
-        $('.search-results-sort select').on('change', function() {
-            Search.sortBy($(this).val());
-        });
-
-        $('.search-view-type-list').on('click', function(e) {
-            e.preventDefault();
-            Search.setViewType('list');
-            $('.search-view-type').removeClass('active');
-            $(this).addClass('active');
-        });
-        $('.search-view-type-grid').on('click', function(e) {
-            e.preventDefault();
-            Search.setViewType('grid');
-            $('.search-view-type').removeClass('active');
-            $(this).addClass('active');
-        });
-
-        var view_type = localStorage.getItem('search_view_type');
-        if (!view_type) {
-            view_type = 'list';
-        }
-        $('.search-view-type-' + view_type).click();
-    });
-</script>
+<?php endif; ?>
