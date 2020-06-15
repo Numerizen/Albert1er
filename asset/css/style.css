@@ -1209,7 +1209,7 @@ nav li {
 }
 
 nav ul {
-  width:60%;
+  /*width:60%;*/
   clear:none;
   float:left;
 }
